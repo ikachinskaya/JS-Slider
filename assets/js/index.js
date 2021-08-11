@@ -44,9 +44,25 @@ prevBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", () => {
   //В текущий индекс записали следующий индекс
   slider.currentIndex = slider.next();
-   //Обновили отображение страницы
+  //Обновили отображение страницы
   updateView();
 });
 
 //Обновили отображение страницы
+updateView();
+
+//===================================================
+//Refactor Slider
+
+const createSliderBtnHandler = (direction = "next") => {
+  return function () {
+    const newSlide = direction === "next" ? "nextSlide" : "prevSlide";
+    slider.currentIndex = slider[newSlide];
+    updateView();
+  };
+};
+
+prevBtn.addEventListener("click", createSliderBtnHandler("next"));
+
+nextBtn.addEventListener("click", createSliderBtnHandler("prev"));
 updateView();

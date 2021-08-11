@@ -37,4 +37,18 @@ class Slider {
   prev() {
     return (this._currentIndex - 1 + this.images.length) % this.images.length;
   }
+
+  //=================================================
+  //Refactor Slider
+  
+  //Получить следующий индекс слайда
+  get nextSlide() {
+    /*% - для того, чтобы не выйти за границы массива. Текущий индекс = 2 + 1 = 3 % 3 = 0 (переходит на нулевой индекс) */
+    return (this._currentIndex + 1) % this.images.length;
+  }
+
+  //Получить предыдущий индекс слайда
+  get prevSlide() {
+    return (this._currentIndex - 1 + this.images.length) % this.images.length;
+  }
 }
